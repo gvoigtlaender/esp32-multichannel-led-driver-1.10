@@ -10,6 +10,5 @@ idf_component_register(SRCS ${SOURCES}
     EMBED_TXTFILES ../frontend/public/favicon.ico
     REQUIRES esp_netif nvs_flash esp_http_server ota mqtt json mdns esp_adc esp_wifi driver)
 
-# #set(COMPONENT_EMBED_TXTFILES ../certs/io_alab_cc.pem ../certs/mqtt_io_alab_cc.pem)
 # set(COMPONENT_EMBED_TXTFILES ../frontend/public/favicon.ico)
 # register_component()

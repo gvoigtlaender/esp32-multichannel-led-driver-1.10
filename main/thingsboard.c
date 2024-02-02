@@ -116,7 +116,6 @@ void init_thingsboard()
     esp_mqtt_client_config_t mqtt_thingsboard_cfg = {
         .uri = thingsboard_config->endpoint,                      /* thingboard mqtt server ex: mqtt://test.com:1883 */
         .username = thingsboard_config->token,                    /* thingboard device token */
-//        .cert_pem = (const char *) mqtt_server_cert_pem_start,  /* ssl certificate */
         .event_handle = thingsboard_mqtt_event_handler
     };
 
