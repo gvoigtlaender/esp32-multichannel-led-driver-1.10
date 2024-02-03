@@ -36,7 +36,7 @@ volatile uint8_t schedule_was_started = false;
 volatile uint8_t brake_slow_transition = 0;
 volatile uint8_t stop_schedule = 0;
 
-QueueHandle_t xQueueTransition;
+QueueHandle_t xQueueTransition = NULL;
 
 /* gamma 2.4 8bit 256steps */
 const uint16_t gamma_2_40[256] = {
@@ -212,7 +212,10 @@ void set_channel_duty(uint8_t id, uint8_t duty, uint8_t not_sync)
 
 void set_brightness(uint8_t target_brightness, uint8_t not_sync)
 {
-
+  if ( xQueueTransition == NULL ) {
+    ESP_LOGE(TAG, "set_brightness: xQueueTransition==NULL");
+    return;
+  }
   x_light_message_t txMessage;
   for (uint8_t i = 0; i < MAX_LED_CHANNELS; ++i)
   {
@@ -262,7 +265,7 @@ void set_light(const double * target_duty, double target_brightness, uint8_t mod
 
 static void backup_channels()
 {
-#if USE_RTC
+#ifdef USE_RTC
   esp_err_t err = ESP_OK;
   led_schedule_rtc_mem_t mem;
 
@@ -284,7 +287,7 @@ static void backup_channels()
 
 static void restore_channels()
 {
-#if USE_RTC
+#ifdef USE_RTC
   led_schedule_rtc_mem_t mem;
   double duty[MAX_LED_CHANNELS];
 

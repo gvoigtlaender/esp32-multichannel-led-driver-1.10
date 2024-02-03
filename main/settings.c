@@ -303,7 +303,7 @@ void set_default_service()
   strlcpy(service.hostname, "ledcontroller", 32);
 
   /* OTA */
-  strlcpy(service.ota_url, CONFIG_OTA_URL, 64);
+  strlcpy(service.ota_url, "DEPRECATED!", 64);  // do not remove for struct for backwards compatibility!
 
   /* NTP */
   strlcpy(service.ntp_server, "es.pool.ntp.org", 32);

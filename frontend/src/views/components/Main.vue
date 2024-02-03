@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-
+        <!--
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">OTA url</label>
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-
+        -->
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Firmware</label>

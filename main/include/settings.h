@@ -37,7 +37,7 @@ typedef struct {
 
 typedef struct {
   char hostname[32];                    // Device Name
-  char ota_url[64];                     // OTA Server URL (full web path to firmware)
+  char ota_url[64];                     // OTA Server URL (full web path to firmware) // do not remove for struct for backwards compatibility!
   char ntp_server[32];                  // Wifi SSID Name
   int16_t utc_offset;                   // UTC offset in minutes
   bool ntp_dst;                         // Daylight save

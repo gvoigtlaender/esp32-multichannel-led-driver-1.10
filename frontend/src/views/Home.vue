@@ -140,6 +140,7 @@
                 <div class="columns">
                   <div class="column has-text-centered">
                     <div class="field is-grouped">
+                      <!--
                       <div class="control">
                         <a
                           class="button is-light"
@@ -149,6 +150,7 @@
                           Firmware
                         </p>
                       </div>
+                      -->
                       <div class="control">
                         <a
                           class="button is-warning"

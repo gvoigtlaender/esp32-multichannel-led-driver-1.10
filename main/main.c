@@ -38,37 +38,37 @@
 #include "led.h"
 #include "udp_multicast.h"
 #include "pwm.h"
-#include "ota.h"
+// #include "ota.h"
 
 static const char *TAG="APP";
-static uint8_t ota_requested = 0;
+// static uint8_t ota_requested = 0;
 
-esp_err_t upgrade_firmware(void)
-{
-  /* disable wifi powersave */
-//  disable_power_save();
-
-  services_t * services = get_services();
-  char * ota_url_ptr = NULL;
-  if (strlen(services->ota_url) > 16)
-  {
-    ota_url_ptr = services->ota_url;
-    ESP_LOGI(TAG, "update firmware from %s", ota_url_ptr);
-  }
-
-  /* Set OTA flag to prevent starting web server in event loop */
-  ota_requested = 1;
-
-  /* start ota task */
-  if (xTaskCreate(&ota_task, "ota_task", 8192, ota_url_ptr, 5, NULL) != pdPASS)
-  {
-    set_led_mode(LED_SLOW_BLINK);
-    return ESP_OK;
-  } else {
-    set_led_mode( LED_THREE_BLINK);
-    return ESP_ERR_NO_MEM;
-  }
-}
+// esp_err_t upgrade_firmware(void)
+// {
+//   /* disable wifi powersave */
+// //  disable_power_save();
+// 
+//   services_t * services = get_services();
+//   char * ota_url_ptr = NULL;
+//   if (strlen(services->ota_url) > 16)
+//   {
+//     ota_url_ptr = services->ota_url;
+//     ESP_LOGI(TAG, "update firmware from %s", ota_url_ptr);
+//   }
+// 
+//   /* Set OTA flag to prevent starting web server in event loop */
+//   ota_requested = 1;
+// 
+//   /* start ota task */
+//   if (xTaskCreate(&ota_task, "ota_task", 8192, ota_url_ptr, 5, NULL) != pdPASS)
+//   {
+//     set_led_mode(LED_SLOW_BLINK);
+//     return ESP_OK;
+//   } else {
+//     set_led_mode( LED_THREE_BLINK);
+//     return ESP_ERR_NO_MEM;
+//   }
+// }
 
 void app_main()
 {

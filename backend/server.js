@@ -74,12 +74,12 @@ app.post('/api/light', function (req, res) {
 });
 
 /* OTA */
-app.get('/update', function (req, res) {
-  res.status(401).send({
-    message: "Unauthorized!"
-  });
-  res.send(JSON.stringify({success: true}));
-});
+// app.get('/update', function (req, res) {
+//   res.status(401).send({
+//     message: "Unauthorized!"
+//   });
+//   res.send(JSON.stringify({success: true}));
+// });
 
 app.post('/upload', function (req, res) {
   console.log(req.files);
@@ -172,8 +172,7 @@ let services = {
   mqtt_password: '',
   mqtt_qos: 0,
   enable_ntp: false,
-  enable_mqtt: false,
-  ota_url: 'http://192.168.4.2:8080/hv_cc_led_driver_rtos.ota.bin'
+  enable_mqtt: false
 }
 
 let cooling = {

@@ -15,10 +15,7 @@ Password: 12345678
 2. build firmware and flash `idf.py flash`
 
 ## OTA
-1. setup ota server url `idf.py menuconfig`
-    - go 'component config' --> 'ota'
-    - change the path to the real http server
-2. build firmware and flash `idf.py flash`
-3. reboot the device and connect to the access point
-4. configure WiFi on [http://192.168.4.1](http://192.168.4.1) 
-3. hold the "IO0" button after loading for 3 seconds. this will start the OTA sequence.
+1. build firmware `idf.py build`
+2. Goto Settings -> Identity
+3. Select firmware file
+4. Press Upload

@@ -17,7 +17,7 @@
 #include "nvs_flash.h"
 
 #include "board.h"
-#include "ota.h"
+// #include "ota.h"
 #include "webpage.h"
 #include "settings.h"
 #include <monitor.h>
@@ -163,24 +163,24 @@ esp_err_t factory_get_handler(httpd_req_t *req)
 }
 
 /* OTA GET handler */
-esp_err_t ota_get_handler(httpd_req_t *req)
-{
-  /* Auth token validation */
-  if (validate_request(req) == ESP_OK)
-  {
-    char * response = success_response_json();
-    httpd_resp_send(req, response, strlen(response));
-    free(response);
-
-    /* Start ota task */
-    upgrade_firmware();
-  } else {
-    httpd_resp_set_status(req, "401 Unauthorized!");
-    httpd_resp_send(req, NULL, 0);
-  }
-
-  return ESP_OK;
-}
+// esp_err_t ota_get_handler(httpd_req_t *req)
+// {
+//   /* Auth token validation */
+//   if (validate_request(req) == ESP_OK)
+//   {
+//     char * response = success_response_json();
+//     httpd_resp_send(req, response, strlen(response));
+//     free(response);
+// 
+//     /* Start ota task */
+//     upgrade_firmware();
+//   } else {
+//     httpd_resp_set_status(req, "401 Unauthorized!");
+//     httpd_resp_send(req, NULL, 0);
+//   }
+// 
+//   return ESP_OK;
+// }
 
 /* OTA POST handler */
 esp_err_t upload_post_handler(httpd_req_t *req)
@@ -603,10 +603,10 @@ static esp_err_t settings_post_handler(httpd_req_t *req)
         strlcpy(service_config->hostname, hostname->valuestring, 32);
       }
 
-      cJSON *ota_url = cJSON_GetObjectItem(services, "ota_url");
-      if (cJSON_IsString(ota_url) && (ota_url->valuestring != NULL)) {
-        strlcpy(service_config->ota_url, ota_url->valuestring, 64);
-      }
+      // cJSON *ota_url = cJSON_GetObjectItem(services, "ota_url");
+      // if (cJSON_IsString(ota_url) && (ota_url->valuestring != NULL)) {
+      //   strlcpy(service_config->ota_url, ota_url->valuestring, 64);
+      // }
 
       cJSON *ntp_server = cJSON_GetObjectItem(services, "ntp_server");
       if (cJSON_IsString(ntp_server) && (hostname->valuestring != NULL)) {
@@ -730,7 +730,7 @@ static esp_err_t settings_post_handler(httpd_req_t *req)
       datetime.min = minute->valueint;
       datetime.sec = second->valueint;
 
-#if USE_RTC
+#ifdef USE_RTC
       mcp7940_set_datetime(&datetime);
 #else
       (void)datetime;
@@ -1039,12 +1039,12 @@ httpd_handle_t start_webserver(void)
         .user_ctx = NULL
     };
 
-    httpd_uri_t get_ota = {
-        .uri      = "/update",
-        .method   = HTTP_GET,
-        .handler  = ota_get_handler,
-        .user_ctx = NULL
-    };
+    //httpd_uri_t get_ota = {
+    //    .uri      = "/update",
+    //    .method   = HTTP_GET,
+    //    .handler  = ota_get_handler,
+    //    .user_ctx = NULL
+    //};
 
     /* HTTP upload firmware */
     httpd_uri_t update_post = {
@@ -1113,7 +1113,7 @@ httpd_handle_t start_webserver(void)
     httpd_register_uri_handler(server, &global_options);
     httpd_register_uri_handler(server, &get_reboot);
     httpd_register_uri_handler(server, &get_factory);
-    httpd_register_uri_handler(server, &get_ota);
+    // httpd_register_uri_handler(server, &get_ota);
     httpd_register_uri_handler(server, &update_post);
     httpd_register_uri_handler(server, &get_home);
     httpd_register_uri_handler(server, &get_favicon);
@@ -1448,7 +1448,7 @@ char * get_settings_json()
   cJSON * services = cJSON_CreateObject();
   services_t * service_config = get_services();
   cJSON_AddItemToObject(services, "hostname", cJSON_CreateString(service_config->hostname));
-  cJSON_AddItemToObject(services, "ota_url", cJSON_CreateString(service_config->ota_url));
+  // cJSON_AddItemToObject(services, "ota_url", cJSON_CreateString(service_config->ota_url));
   cJSON_AddItemToObject(services, "ntp_server", cJSON_CreateString(service_config->ntp_server));
   cJSON_AddItemToObject(services, "utc_offset", cJSON_CreateNumber(service_config->utc_offset));
   cJSON_AddItemToObject(services, "ntp_dst", cJSON_CreateBool(service_config->ntp_dst));
@@ -1479,7 +1479,7 @@ char * get_settings_json()
 
   /* time config */
   datetime_t datetime;
-#if USE_RTC
+#ifdef USE_RTC
   mcp7940_get_datetime(&datetime);
 #else
   datetime.year = 2024-1970;

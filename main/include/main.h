@@ -9,7 +9,7 @@
 #include "freertos/event_groups.h"
 #include "freertos/task.h"
 
-#define FIRMWARE "1.10"
+#define FIRMWARE "1.10.3"
 #define HARDWARE "ESP32-PICO-D4"
 
 extern EventGroupHandle_t wifi_event_group;
