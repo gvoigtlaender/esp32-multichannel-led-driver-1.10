@@ -140,17 +140,6 @@
                 <div class="columns">
                   <div class="column has-text-centered">
                     <div class="field is-grouped">
-                      <!--
-                      <div class="control">
-                        <a
-                          class="button is-light"
-                          @click="updateDevice"
-                        >Update</a>
-                        <p class="help has-text-centered">
-                          Firmware
-                        </p>
-                      </div>
-                      -->
                       <div class="control">
                         <a
                           class="button is-warning"

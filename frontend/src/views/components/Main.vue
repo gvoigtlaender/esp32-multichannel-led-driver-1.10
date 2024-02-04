@@ -21,25 +21,6 @@
             </div>
           </div>
         </div>
-        <!--
-        <div class="field is-horizontal">
-          <div class="field-label is-normal">
-            <label class="label">OTA url</label>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control is-expanded">
-                <input
-                  v-model="services.ota_url"
-                  class="input"
-                  type="text"
-                  placeholder="OTA Url"
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        -->
         <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Firmware</label>

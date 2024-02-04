@@ -17,7 +17,7 @@
                   class="input"
                   type="text"
                   placeholder="Name"
-                />
+                >
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
                   v-model="auth.password"
                   class="input"
                   placeholder="Password"
-                />
+                >
               </div>
             </div>
           </div>
